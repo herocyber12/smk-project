@@ -18,7 +18,7 @@
         <div class="card-header pb-0">
           <div class="row">
             <div class="col-lg-6 col-7">
-              <h6>Data Absensi Murid</h6>
+              <h6>Data Absensi Guru</h6>
               <p class="text-sm mb-0">
               </p>
             </div>

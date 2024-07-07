@@ -9,7 +9,7 @@
     <div class="row gx-4">
       <div class="col-auto">
         <div class="avatar avatar-xl position-relative">
-          <img src="{{ asset($data->path_foto) }}" alt="profile_image" class="w-100 h-100 border-radius-lg shadow-sm" style="object-fit: cover;object-position: center;">
+          <img src="{{ asset($data->path_foto)  }}" alt="profile_image" class="w-100 h-100 border-radius-lg shadow-sm" style="object-fit: cover;object-position: center;">
           <button class="change-photo-btn btn-sm"> <span style="font-size:12px;"> Ganti Profil</span></button>
         </div>
       </div>
