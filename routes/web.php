@@ -24,6 +24,7 @@ use App\Http\Controllers\Murid\JadwalController as JadwalMurid;
 use App\Http\Controllers\Murid\ProfileController as ProfilelMurid;
 use App\Http\Controllers\PpdbController as Ppdb;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\LandingController;
     
 
     Route::controller(Ppdb::class)->group(function(){
@@ -153,5 +154,5 @@ use App\Http\Controllers\PaymentController;
         });
 });
 
-Route::get('/',[AuthController::class,'login']);
+Route::get('/',[LandingController::class,'index']);
 

@@ -34,7 +34,8 @@ class PpdbController extends Controller
 
     public function buatdata(Request $request)
     {
-        $request->validate([
+        
+        $data = $request->validate([
             'jalur_pendaftaran' => 'required|string|max:255',
             'prodi' => 'required|string|max:255',
             'nama_lengkap' => 'required|string|max:255',
@@ -60,14 +61,13 @@ class PpdbController extends Controller
         // if ($validator->fails()) {
         //     return redirect()->back()->withErrors($validator)->withInput();
         // }
-
         $formattedDate = str_replace('-', '', $request->tanggal_lahir);
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($formattedDate),
             'level' => 'Calon Siswa'
         ]);
-        $siswa=Ppdb::create([$request->all(),'id_user' => $user->id]);
+        Ppdb::create([$data,'id_user' => $user->id]);
 
         return redirect()->back()->with('success','Berhasil mendaftar silahkan login dengan email dan tanggal lahir anda sebagai password');
     }

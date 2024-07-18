@@ -15,4 +15,10 @@ class Kelas extends Model
     {
         return $this->belongsTo(DataGuru::class,'id_wali');
     }
+
+    public function jadwals()
+    {
+        return $this->hasMany(Jadwal::class, 'id_kelas');
+    }
+    
 }

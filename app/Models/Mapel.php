@@ -21,4 +21,9 @@ class Mapel extends Model
     {
         return $this->belongsTo(DataGuru::class,'guru_pengapu');
     }
+    
+    public function jadwal()
+    {
+        return $this->hasMany(Jadwal::class);
+    }
 }

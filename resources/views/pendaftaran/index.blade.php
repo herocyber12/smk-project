@@ -25,7 +25,7 @@
                 @csrf
                 <div class="mb-3">
                     <label for="jalur_pendaftaran" class="form-label">Jalur Pendaftaran</label>
-                    <select class="form-control" name="jalur_pendaftaran" id="jalur_pendaftaran" require>
+                    <select class="form-control" name="jalur_pendaftaran" id="jalur_pendaftaran" required>
                         <option value="Inden">Inden</option>
                         <option value="Offline">Offline</option>
                         <option value="Online">Online</option>

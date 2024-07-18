@@ -9,4 +9,9 @@ class Hari extends Model
 {
     use HasFactory;
     protected $table = 'hari';
+
+    public function jadwal()
+    {
+        return $this->hasMany(Jadwal::class);
+    }
 }

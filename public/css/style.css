@@ -1,0 +1,7 @@
+body {
+    padding-top: 56px;
+}
+header {
+    background: url('img/header-bg.jpg') no-repeat center center;
+    background-size: cover;
+}
