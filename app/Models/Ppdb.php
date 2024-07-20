@@ -11,7 +11,7 @@ class Ppdb extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'pendaftaran';
-
+    
     protected $fillable = [
         'jalur_pendaftaran', 'prodi', 'nama_lengkap', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir',
         'alamat','email', 'no_hp', 'asal_sekolah', 'alamat_asal_sekolah', 'tahun_lulus', 'nama_ayah',

@@ -62,12 +62,35 @@ class PpdbController extends Controller
         //     return redirect()->back()->withErrors($validator)->withInput();
         // }
         $formattedDate = str_replace('-', '', $request->tanggal_lahir);
+
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($formattedDate),
             'level' => 'Calon Siswa'
         ]);
-        Ppdb::create([$data,'id_user' => $user->id]);
+        Ppdb::create([
+            'jalur_pendaftaran' => $request->jalur_pendaftaran,
+            'prodi' => $request->prodi,
+            'nama_lengkap' => $request->nama_lengkap,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat' => $request->alamat,
+            'email' => $request->email,
+            'no_hp' => $request->no_hp,
+            'asal_sekolah' => $request->asal_sekolah,
+            'alamat_asal_sekolah' => $request->alamat_asal_sekolah,
+            'tahun_lulus' => $request->tahun_lulus,
+            'nama_ayah' => $request->nama_ayah,
+            'nama_ibu' => $request->nama_ibu,
+            'alamat_tempat_tinggal_ortu' => $request->alamat_tempat_tinggal_ortu,
+            'no_hp_ortu' => $request->no_hp_ortu,
+            'nama_wali' => $request->nama_wali,
+            'alamat_tempat_tinggal_wali' => $request->alamat_tempat_tinggal_wali,
+            'no_hp_wali' => $request->no_hp_wali,
+            'info_ppdb' => $request->info_ppdb,
+            'kelengkapan_dokumen' => $request->kelengkapan_dokumen,
+            'id_user' => $user->id]);
 
         return redirect()->back()->with('success','Berhasil mendaftar silahkan login dengan email dan tanggal lahir anda sebagai password');
     }
