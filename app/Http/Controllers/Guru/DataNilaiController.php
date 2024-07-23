@@ -32,7 +32,6 @@ class DataNilaiController extends Controller
         $nilais = Nilai::with(['kelas', 'murid', 'mapel'])->whereHas('mapel',function ($query) use ($data){
             $query->where('guru_pengapu', $data->id);
         })->get();
-        // dd($mapels);
         return view('guru.datanilai.datanilai', compact('nilais','kelas', 'murids', 'mapels'));
     }
 
@@ -45,6 +44,7 @@ class DataNilaiController extends Controller
             'id_kelas' => 'required|exists:kelas,id',
             'id_murid' => 'required|exists:data_murid,id',
             'nilai' => 'required|integer|min:0|max:100',
+            'jenis_nilai' => 'required',
         ]);
 
         $rand = mt_rand(000000,999999);
@@ -54,10 +54,11 @@ class DataNilaiController extends Controller
             'id_kelas' => $request->id_kelas,
             'id_murid' => $request->id_murid,
             'id_mapel' => $mapels->id,
-            'nilai' => $request->nilai
+            'nilai' => $request->nilai,
+            'jenis_nilai' => $request->jenis_nilai
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success','berhasil menambahkan data');
     }
 
     public function update(Request $request, $id)
@@ -73,11 +74,12 @@ class DataNilaiController extends Controller
         $nilai = Nilai::where('id',$id)->update([
                                             'id_kelas' => $request->id_kelas_edit,
                                             'id_mapel' => $mapels->id,
-                                            'nilai' => $request->nilai_edit
+                                            'nilai' => $request->nilai_edit,
+                                            'jenis_nilai' => $request->jenis_nilai_edit
                                         ]);
                                         // dd($data);
 
-        return redirect()->back();
+        return redirect()->back()->with('success','berhasil update data');
     }
 
     public function hapus($id)
@@ -85,6 +87,6 @@ class DataNilaiController extends Controller
         $nilai = Nilai::findOrFail($id);
         $nilai->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Berhasil menghapus data');
     }
 }

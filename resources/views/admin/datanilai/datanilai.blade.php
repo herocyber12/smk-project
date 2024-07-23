@@ -44,6 +44,14 @@
         			  </div>
 
         			  <div class="mb-3 col-xl-6">
+        				  <label for="nilai" class="form-label">Nilai Untuk</label>
+						  <select name="jenis_nilai" class="form-control" id="">
+							  <option value="Tugas">Tugas</option>
+							<option value="UAS">UAS</option>
+							<option value="UTS">UAS</option>
+						  </select>
+        			  </div>
+        			  <div class="mb-3 col-xl-6">
         				  <label for="nilai" class="form-label">Nilai Yang Anda Berikan</label>
         				  <input type="text" name="nilai" class="form-control" id="nilai" placeholder="Contoh : 90/A+">
         			  </div>
@@ -82,6 +90,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mapel</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Nilai</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nilai</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Akssi</th>
                     </tr>
@@ -95,6 +104,7 @@
 						<td>{{ $item->murid->nama ?? '"N/A"'}}</td>
 						<td>{{ $item->murid->id_kelas ?? '"N/A"'}}</td>
 						<td>{{$item->mapel->nama_mapel ?? '"N/A"'}}</td>
+						<td>{{$item->jenis_nilai}}</td>
 						<td>{{$item->nilai}}</td>
 						<td>
 						<div class="d-flex d-inline-block">
@@ -137,11 +147,20 @@
 													@endforeach
         										  </select>
         			  						</div>
-											<div class="mb-3 col-xl-6">
-												<label for="nilai_edit" class="form-label">Nilai yang anda berikan</label>
-												<input type="text" name="nilai_edit" class="form-control" id="nilai_edit" placeholder="Contoh : 90/A+" value="{{$item->nilai}}">
+											  <div class="mb-3 col-xl-6">
+												  <label for="nilai_edit" class="form-label">Jenis Nilai</label>
+												  
+											  		<select name="jenis_nilai_edit" class="form-control" id="">
+														<option value="Tugas" {{$item->jenis_nilai === "Tugas" ? 'selected' : ''}}>Tugas</option>
+														<option value="UAS" {{$item->jenis_nilai === "UAS" ? 'selected' : ''}}>UAS</option>
+														<option value="UTS" {{$item->jenis_nilai === "UTS" ? 'selected' : ''}}>UAS</option>
+						  							</select>
 											</div>
-											<button type="submit" class="btn btn-success btn-block">Ubah Data</button>
+											  <div class="mb-3 col-xl-6">
+												  <label for="nilai_edit" class="form-label">Nilai yang anda berikan</label>
+												  <input type="text" name="nilai_edit" class="form-control" id="nilai_edit" placeholder="Contoh : 90/A+" value="{{$item->nilai}}">
+											  </div>
+											  <button type="submit" class="btn btn-success btn-block">Ubah Data</button>
 										</form>
 									</div>
 									<div class="modal-footer">

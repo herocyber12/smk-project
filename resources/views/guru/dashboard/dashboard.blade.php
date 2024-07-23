@@ -13,7 +13,7 @@
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Anda Wali Kelas</p>
                     <h5 class="font-weight-bolder mb-0">
                       @foreach ( $dataGuru as $dataGuru )
-                      {{ $dataGuru->nama_kelas }}
+                      {{ $dataGuru->nama_kelas ?? "Anda belum ditunjuk sebagai wali murid"}}
                       @endforeach
                     </h5>
                   </div>

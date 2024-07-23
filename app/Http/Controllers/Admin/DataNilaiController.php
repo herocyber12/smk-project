@@ -31,6 +31,7 @@ class DataNilaiController extends Controller
             'id_murid' => 'required|exists:data_murid,id',
             'id_mapel' => 'required|exists:mapel,id',
             'nilai' => 'required|integer|min:0|max:100',
+            'jenis_nilai' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -43,7 +44,8 @@ class DataNilaiController extends Controller
             'id_kelas' => $request->id_kelas,
             'id_murid' => $request->id_murid,
             'id_mapel' => $request->id_mapel,
-            'nilai' => $request->nilai
+            'nilai' => $request->nilai,
+            'jenis_nilai' => $request->jenis_nilai
         ]);
 
         return redirect()->back()->with('success', 'Data nilai berhasil ditambahkan');
@@ -56,6 +58,7 @@ class DataNilaiController extends Controller
             'id_murid_edit' => 'required|exists:data_murid,id',
             'id_mapel_edit' => 'required|exists:mapel,id',
             'nilai_edit' => 'required|integer|min:0|max:100',
+            'jenis_nilai_edit' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -68,6 +71,7 @@ class DataNilaiController extends Controller
             'id_murid' => $request->id_murid_edit,
             'id_mapel' => $request->id_mapel_edit,
             'nilai' => $request->nilai_edit,
+            'jenis_nilai' => $request->jenis_nilai_edit
         ]);
 
         return redirect()->back()->with('success', 'Data nilai berhasil diupdate');

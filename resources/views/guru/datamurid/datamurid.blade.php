@@ -34,7 +34,7 @@
 					@foreach ($murid as $key => $item )
 						
 					<tr>
-						<td>{{ $no }}</td>
+						<td>{{ $no++ }}</td>
 						<td>{{ $item->nama}}</td>
 						<td>{{ $item->alamat}}</td>
 						<td>{{$item->no_hp}}</td>

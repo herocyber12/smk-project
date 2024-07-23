@@ -35,5 +35,12 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
+        DB::table('users')->insert([
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('password123'),
+            'level' => 'Admin',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

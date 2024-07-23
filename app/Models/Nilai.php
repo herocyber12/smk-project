@@ -18,6 +18,7 @@ class Nilai extends Model
         'id_murid',
         'id_mapel',
         'nilai',
+        'jenis_nilai'
     ];
 
     public function kelas()

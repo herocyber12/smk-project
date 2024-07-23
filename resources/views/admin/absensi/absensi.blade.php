@@ -7,7 +7,7 @@
     <div class="col-xl-4 col-sm-6 mb-xl-0">
       <form action="{{ route('admin.buatabsen') }}" method="POST">
           @csrf
-          <button class="btn btn-success" type="submit" {{ $hasAbsensiToday ? 'disabled' : '' }}>Buat Absen</button>
+          <button class="btn btn-success" type="submit" {{ $hasAbsensiToday ? 'disabled' : '' }}>Buat Absen untuk Guru</button>
       </form>
     </div>
   </div>

@@ -70,9 +70,14 @@ class AbsenController extends Controller
 
         if($result){
             session(['needs_absen' => false]);
+            $stats = 'success';
+            $msg = 'Berhasil melakukan absen';
+        } else {
+            $stats = 'error';
+            $msg = 'Gagal Melakukan absen';
         }
 
-        return redirect()->back();
+        return redirect()->back()->with($stats,$msg);
     }
 
     public function hapus(Request $r, $id)

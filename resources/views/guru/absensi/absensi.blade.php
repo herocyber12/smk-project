@@ -7,7 +7,7 @@
     <div class="col-xl-4 col-sm-6 mb-xl-0">
       <form action="{{ route('guru.buatabsen') }}" method="POST">
           @csrf
-          <button class="btn btn-success" type="submit" {{ $hasAbsensiToday ? 'disabled' : '' }}>Buat Absen</button>
+          <button class="btn btn-success" type="submit" {{ $hasAbsensiToday ? 'disabled' : ''  }}>Buat Absen untuk Murid Mapel Anda</button>
       </form>
     </div>
   </div>
@@ -41,6 +41,7 @@
               <tbody>
                 @php($no = 1)
                 @foreach ($absensMurid as $abs)
+                
                 <tr>
                   <td>{{$no}}</td>
                   <td>{{$abs->murid->nama}}</td>
