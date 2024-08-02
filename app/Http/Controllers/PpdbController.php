@@ -62,7 +62,11 @@ class PpdbController extends Controller
         //     return redirect()->back()->withErrors($validator)->withInput();
         // }
         $formattedDate = str_replace('-', '', $request->tanggal_lahir);
+        $check = User::where('email',$request->email)->first();
 
+        if($check){
+            return redirect()->back()->with('error','Email Sudah Terdaftar');
+        }
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($formattedDate),
@@ -90,7 +94,8 @@ class PpdbController extends Controller
             'no_hp_wali' => $request->no_hp_wali,
             'info_ppdb' => $request->info_ppdb,
             'kelengkapan_dokumen' => $request->kelengkapan_dokumen,
-            'id_user' => $user->id]);
+            'id_user' => $user->id
+        ]);
 
         return redirect()->back()->with('success','Berhasil mendaftar silahkan login dengan email dan tanggal lahir anda sebagai password');
     }

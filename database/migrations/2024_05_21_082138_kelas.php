@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_wali');
 
             $table->foreign('id_wali')->references('id')->on('data_guru');
+            $table->timestamps();
         });
     }
 

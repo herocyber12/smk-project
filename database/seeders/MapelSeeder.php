@@ -16,20 +16,20 @@ class MapelSeeder extends Seeder
     public function run()
     {
         $mapels = [
-            ['nama_mapel' => 'PPKn', 'guru_pengapu' => 33],
-            ['nama_mapel' => 'Matematika', 'guru_pengapu' => 34],
-            ['nama_mapel' => 'Hadits', 'guru_pengapu' => 35],
-            ['nama_mapel' => 'Bahasa Inggris', 'guru_pengapu' => 36],
-            ['nama_mapel' => 'Administrasi Infrastruktur Jaringan Keamanan Jaringan', 'guru_pengapu' => 37],
-            ['nama_mapel' => 'Fisika', 'guru_pengapu' => 38],
-            ['nama_mapel' => 'Bahasa Indonesia', 'guru_pengapu' => 39],
-            ['nama_mapel' => 'Administrasi Sistem Jaringan', 'guru_pengapu' => 40],
-            ['nama_mapel' => 'Bahasa Arab', 'guru_pengapu' => 41],
-            ['nama_mapel' => 'PAI', 'guru_pengapu' => 42],
-            ['nama_mapel' => 'Seni Budaya PKWU', 'guru_pengapu' => 43],
-            ['nama_mapel' => 'Penjasorkes', 'guru_pengapu' => 44],
-            ['nama_mapel' => 'Produktif TKJ / Laboran', 'guru_pengapu' => 45],
-            ['nama_mapel' => 'Teknologi Layanan Jaringan Web Frontend Kelas Industri', 'guru_pengapu' => 47],
+            ['nama_mapel' => 'PPKn', 'guru_pengapu' => 1],
+            ['nama_mapel' => 'Matematika', 'guru_pengapu' => 2],
+            ['nama_mapel' => 'Hadits', 'guru_pengapu' => 3],
+            ['nama_mapel' => 'Bahasa Inggris', 'guru_pengapu' => 4],
+            ['nama_mapel' => 'Administrasi Infrastruktur Jaringan Keamanan Jaringan', 'guru_pengapu' => 5],
+            ['nama_mapel' => 'Fisika', 'guru_pengapu' => 6],
+            ['nama_mapel' => 'Bahasa Indonesia', 'guru_pengapu' => 7],
+            ['nama_mapel' => 'Administrasi Sistem Jaringan', 'guru_pengapu' => 8],
+            ['nama_mapel' => 'Bahasa Arab', 'guru_pengapu' => 9],
+            ['nama_mapel' => 'PAI', 'guru_pengapu' => 10],
+            ['nama_mapel' => 'Seni Budaya PKWU', 'guru_pengapu' => 11],
+            ['nama_mapel' => 'Penjasorkes', 'guru_pengapu' => 12],
+            ['nama_mapel' => 'Produktif TKJ / Laboran', 'guru_pengapu' => 13],
+            ['nama_mapel' => 'Teknologi Layanan Jaringan Web Frontend Kelas Industri', 'guru_pengapu' => 14],
         ];
 
         foreach ($mapels as $mapel) {

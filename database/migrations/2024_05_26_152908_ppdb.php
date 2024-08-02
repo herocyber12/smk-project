@@ -35,8 +35,11 @@ return new class extends Migration
             $table->json('info_ppdb');
             $table->json('kelengkapan_dokumen');
             $table->string('status_penerimaan',50);
+            $table->unsignedBigInteger('id_user');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 
