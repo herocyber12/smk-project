@@ -206,6 +206,15 @@
 								  @endforeach
 							  </select>
 						  </div>
+						  
+						  <div class="mb-3">
+								  	<label for="mapel_tmbh" class="form-label">Jam Mulai</label>
+									  <input type="time" class="form-control" id="jam_mulai" name="jam_mulai">
+								  </div>
+								<div class="mb-3">
+								  	<label for="mapel_tmbh" class="form-label">Jam Selesai</label>
+									  <input type="time" class="form-control" id="jam_selesai" name="jam_selesai">
+								  </div>
 						  <button type="submit" class="btn btn-success btn-block">Tambah Data</button>
 					  </form>
     			  </div>
@@ -241,6 +250,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Guru Pengampu</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hari</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jam</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                     </tr>
                   </thead>
@@ -254,6 +264,7 @@
 						<td>{{$item->mapel->guru->nama ?? '"N/A"'}}</td>
 						<td>{{$item->kelas->nama_kelas}}</td>
 						<td>{{$item->hari->days}}</td>
+						<td>{{$item->jadwal_jam->jam_mulai ?? 'N/A'}} - {{$item->jadwal_jam->jam_selesai ?? 'N/A'}}</td>
 						<td>
 						<div class="d-flex d-inline-block">
 							<button type="button" class="btn btn-warning m-1" data-bs-toggle="modal" data-bs-target="#edit{{$item->id}}">Edit</button>
@@ -297,6 +308,14 @@
                 					            @endforeach
                 					        </select>
                 					    </div>
+										<div class="mb-3">
+										  	<label for="mapel_tmbh" class="form-label">Jam Mulai</label>
+											  <input type="time" class="form-control" id="jam_mulai" name="jam_mulai_edit" value="{{$item->jadwal_jam->jam_mulai ?? ''}}">
+										  </div>
+										<div class="mb-3">
+										  	<label for="mapel_tmbh" class="form-label">Jam Selesai</label>
+											  <input type="time" class="form-control" id="jam_selesai" name="jam_selesai_edit" value="{{$item->jadwal_jam->jam_selesai ?? ''}}">
+										  </div>
                 					    <button type="submit" class="btn btn-success btn-block">Update Data</button>
                 					</form>
 									</div>

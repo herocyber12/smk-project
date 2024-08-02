@@ -16,13 +16,16 @@ return new class extends Migration
             $table->string('kode_jadwal',50);
             $table->unsignedBigInteger('id_mapel');
             $table->unsignedBigInteger('id_hari');
-            $table->string('jam',25);
+            $table->unsignedBigInteger('id_kelas');
+            $table->unsignedBigInteger('id_jam');
 
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('id_mapel')->references('id')->on('mapel');
             $table->foreign('id_hari')->references('id')->on('hari');
+            $table->foreign('id_kelas')->references('id')->on('hari');
+            $table->foreign('id_jam')->references('id')->on('jadwal_jams');
         });
     }
 

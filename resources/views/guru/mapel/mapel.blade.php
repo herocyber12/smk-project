@@ -27,6 +27,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Guru Pengampu</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hari</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jam</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -39,6 +40,7 @@
 						<td>{{$item->mapel->guru->nama ?? 'N/A'}}</td>
 						<td>{{$item->kelas->nama_kelas}}</td>
 						<td>{{$item->hari->days}}</td>
+						<td>{{$item->jadwal_jam->jam_mulai ?? 'N/A'}} - {{$item->jadwal_jam->jam_selesai ?? 'N/A'}}</td>
 					</tr>
 					@php($no++)
 					@endforeach

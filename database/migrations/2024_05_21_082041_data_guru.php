@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('kode_guru')->unique();
             $table->string('nama',75);
-            $table->string('alamat',150);
-            $table->bigInteger('no_hp');
-            $table->string('path_foto',150);
+            $table->string('alamat',150)->nullable();
+            $table->string('no_hp',13)->nullable();
+            $table->string('path_foto',150)->nullable();
             $table->unsignedBigInteger('id_user');
             $table->timestamps();
             $table->softDeletes();

@@ -19,7 +19,7 @@ class JadwalController extends Controller
         $gurus = DataGuru::all(); 
         $kelas = Kelas::with('guru')->get();
         $hari = Hari::all();
-        $jadwals = Jadwal::with(['mapel.guru', 'hari','kelas'])->get();
+        $jadwals = Jadwal::with(['mapel.guru', 'hari','kelas','jadwal_jam'])->get();
         // foreach($jadwals as $jadwals){
 
             // dd($jadwals->mapel->guru);

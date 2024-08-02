@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_murid');
             $table->unsignedBigInteger('id_mapel');
             $table->smallInteger('nilai');
-
+            $table->enum('jenis_nilai',['UAS','UTS','Tugas'])->default('Tugas');
             $table->timestamps();
             $table->softDeletes();
 

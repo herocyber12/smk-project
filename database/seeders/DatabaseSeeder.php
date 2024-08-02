@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             DataGuruTableSeeder::class,
             DataMuridTableSeeder::class,
-            MapelSeeder::class
+            MapelSeeder::class,
+            HariTableSeeder::class
         ]);
     }
 }

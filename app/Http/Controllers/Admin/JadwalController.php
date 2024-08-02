@@ -9,6 +9,7 @@ use App\Models\Mapel;
 use App\Models\Kelas;
 use App\Models\Hari;
 use App\Models\DataGuru;
+use App\Models\JadwalJam;
 use Illuminate\Support\Str;
 
 class JadwalController extends Controller
@@ -19,7 +20,7 @@ class JadwalController extends Controller
         $gurus = DataGuru::all(); 
         $kelas = Kelas::with('guru')->get();
         $hari = Hari::all();
-        $jadwals = Jadwal::with(['mapel', 'hari', 'kelas'])->get();
+        $jadwals = Jadwal::with(['mapel', 'hari', 'kelas','jadwal_jam'])->get();
         return view('admin.mapel.mapel', compact('jadwals', 'mapels', 'kelas', 'hari', 'gurus'));
     }
 
@@ -29,6 +30,13 @@ class JadwalController extends Controller
             'id_mapel' => 'required|array',
             'id_hari' => 'required|exists:hari,id',
             'id_kelas' => 'required|exists:kelas,id',
+            'jam_mulai' => 'required',
+            'jam_selesai' => 'required',
+        ]);
+
+        $jam = JadwalJam::create([
+            'jam_mulai' => $request->jam_mulai,
+            'jam_selesai' => $request->jam_selesai
         ]);
 
         foreach ($request->id_mapel as $mapel) {
@@ -37,6 +45,7 @@ class JadwalController extends Controller
                 'id_mapel' => $mapel,
                 'id_hari' => $request->id_hari,
                 'id_kelas' => $request->id_kelas,
+                'id_jam' => $jam->id,
             ]);
         }
 
@@ -50,6 +59,8 @@ class JadwalController extends Controller
             'id_mapel_edit' => 'required|exists:mapel,id',
             'id_hari_edit' => 'required|exists:hari,id',
             'id_kelas_edit' => 'required|exists:kelas,id',
+            'jam_mulai_edit' => 'required',
+            'jam_selesai_edit' => 'required',
         ]);
 
         $jadwal = Jadwal::findOrFail($id);
@@ -57,6 +68,11 @@ class JadwalController extends Controller
             'id_mapel' => $request->id_mapel_edit,
             'id_hari' => $request->id_hari_edit,
             'id_kelas' => $request->id_kelas_edit,
+        ]);
+
+        JadwalJam::where('id', $jadwal->id_jam)->update([
+            'jam_mulai' => $request->jam_mulai_edit,
+            'jam_selesai' => $request->jam_selesai_edit,
         ]);
 
         return redirect()->back()->with('success', 'Jadwal berhasil diperbarui.');

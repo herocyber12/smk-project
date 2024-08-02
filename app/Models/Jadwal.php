@@ -16,7 +16,8 @@ class Jadwal extends Model
         'kode_jadwal',
         'id_mapel',
         'id_hari',
-        'id_kelas'
+        'id_kelas',
+        'id_jam',
     ];
 
     public function mapel()
@@ -34,5 +35,8 @@ class Jadwal extends Model
         return $this->belongsTo(Kelas::class,'id_kelas');
     }
 
-    
+    public function jadwal_jam()
+    {
+        return $this->belongsTo(JadwalJam::class, 'id_jam');
+    }
 }

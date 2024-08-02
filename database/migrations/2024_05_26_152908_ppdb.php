@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('tempat_lahir',20);
             $table->date('tanggal_lahir',40);
             $table->text('alamat');
+            $table->string('email',50);
             $table->string('no_hp',13);
             $table->string('asal_sekolah',45);
             $table->text('alamat_asal_sekolah');
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->string('no_hp_wali',13)->nullable();
             $table->json('info_ppdb');
             $table->json('kelengkapan_dokumen');
+            $table->string('status_penerimaan',50);
             $table->timestamps();
             $table->softDeletes();
         });

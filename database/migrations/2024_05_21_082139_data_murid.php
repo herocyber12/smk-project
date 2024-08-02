@@ -16,15 +16,16 @@ return new class extends Migration
             $table->string('kode_profile',50)->unique();
             $table->string('nama',75);
             $table->string('alamat',150);
-            $table->bigInteger('no_hp');
-            $table->string('email',150)->unique();
-            $table->string('id_kelas');
-            $table->string('path_foto',150);
+            $table->string('no_hp',50);
+            $table->string('id_kelas',10)->nullable();
+            $table->string('path_foto',150)->nullable();
             $table->boolean('is_lulus')->nullable();
+            $table->unsignedBigInteger('id_user');
             $table->timestamps();
             $table->softDeletes();
 
             $table->index('nama');
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

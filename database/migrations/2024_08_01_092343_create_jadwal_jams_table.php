@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mapel',function (Blueprint $table){
+        Schema::create('jadwal_jams', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_mapel',100);
-            $table->unsignedBigInteger('guru_pengapu');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
             $table->timestamps();
-            $table->softDeletes();
-
-            $table->foreign('guru_pengapu')->references('id')->on('data_guru');
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mapel');
+        Schema::dropIfExists('jadwal_jams');
     }
 };
