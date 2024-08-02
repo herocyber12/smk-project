@@ -94,6 +94,7 @@ class PpdbController extends Controller
             'no_hp_wali' => $request->no_hp_wali,
             'info_ppdb' => $request->info_ppdb,
             'kelengkapan_dokumen' => $request->kelengkapan_dokumen,
+            'status_penerimaan' => 'Calon Siswa',
             'id_user' => $user->id
         ]);
 

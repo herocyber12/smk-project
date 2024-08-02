@@ -33,10 +33,11 @@ class PpdbController extends Controller
         $pendaftaran->save();
         $formattedDate = str_replace('-', '', $pendaftaran->tanggal_lahir);
                 // Buat akun pengguna baru di tabel users
-                $user = User::where('id',$pendaftaran->id_user)->update([
+                User::where('id',$pendaftaran->id_user)->update([
                     'level' => 'Murid',
                 ]);
-// 
+//  
+                $user = User::where('id',$pendaftaran->id_user)->first();
                 // dd($user);
                 $rand = mt_rand(00000,99999);
                 $kode_murid = "ID-M".$rand;
