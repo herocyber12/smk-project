@@ -32,6 +32,7 @@ class ProfileController extends Controller
         if(!is_null($request->email)){
             $user = User::where('id', Auth::id())->update(['email' => $request->email]);
         }
+        
         $guru->update([
             'nama' => $request->nama,
             'no_hp' => $request->no_hp,

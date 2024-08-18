@@ -35,6 +35,7 @@ return new class extends Migration
             $table->json('info_ppdb');
             $table->json('kelengkapan_dokumen');
             $table->string('status_penerimaan',50);
+            $table->text('bukti_tf')->nullable();
             $table->unsignedBigInteger('id_user');
             $table->timestamps();
             $table->softDeletes();

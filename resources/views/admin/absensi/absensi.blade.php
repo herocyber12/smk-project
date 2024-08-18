@@ -44,10 +44,15 @@
                   <td>{{$abs->guru->nama ?? 'N/A'}}</td>
                   <td>{{$abs->tanggal}}</td>
                   <td>
-                    @if ($abs->is_absen === 1)
+                    @if ($abs->is_absen === "Hadir")
                     <button class="btn btn-success" disabled>Sudah Absen</button>
+                    @elseif($abs->is_absen === "Ijin")
+                      <button class="btn btn-secondary" disabled>Ijin</button>
+                    
+                    @elseif($abs->is_absen === "Sakit")
+                    <button class="btn btn-warning" disabled>Sakit</button>
                     @else
-                      <button class="btn btn-danger" disabled>Belum Absen</button>
+                    <button class="btn btn-danger" disabled>Belum Absen</button>
                     @endif
                   </td>
                   <td>

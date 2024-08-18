@@ -12,8 +12,8 @@ class DashboardAdminController extends Controller
 {
     public function index()
     {
-        $dataGuru = DataGuru::count();
-        $dataMurid = DataMurid::count();
+        $dataGuru = DataGuru::where('deleted_at',NULL)->count();
+        $dataMurid = DataMurid::where('deleted_at',NULL)->count();
 
         return view('admin.dashboard.dashboard',compact('dataGuru','dataMurid'));
     }

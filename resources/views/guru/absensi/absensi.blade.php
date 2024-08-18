@@ -7,8 +7,9 @@
     <div class="col-xl-4 col-sm-6 mb-xl-0">
       <form action="{{ route('guru.buatabsen') }}" method="POST">
           @csrf
-          <button class="btn btn-success" type="submit" {{ $hasAbsensiToday ? 'disabled' : ''  }}>Buat Absen untuk Murid Mapel Anda</button>
-      </form>
+          <button class="btn btn-success" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" {{ $hasAbsensiToday ? 'disabled' : ''  }}>Buat Absen untuk Murid Mapel Anda</button>
+          
+        </form>
     </div>
   </div>
 </div>
@@ -49,10 +50,15 @@
                   <td>{{$abs->mapel->nama_mapel}}</td>
                   <td>{{$abs->tanggal}}</td>
                   <td>
-                    @if ($abs->is_absen === 1)
+                    @if ($abs->is_absen === "Hadir")
                     <button class="btn btn-success" disabled>Sudah Absen</button>
+                    @elseif($abs->is_absen === "Ijin")
+                      <button class="btn btn-secondary" disabled>Ijin</button>
+                    
+                    @elseif($abs->is_absen === "Sakit")
+                    <button class="btn btn-warning" disabled>Sakit</button>
                     @else
-                      <button class="btn btn-danger" disabled>Belum Absen</button>
+                    <button class="btn btn-danger" disabled>Belum Absen</button>
                     @endif
                   </td>
                   <td>

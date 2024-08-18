@@ -21,7 +21,7 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
+    {   
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
@@ -37,7 +37,7 @@ class AuthController extends Controller
             }
         }
 
-        return redirect()->route('login')->with('error', 'Invalid credentials');
+        return redirect()->route('login')->with('error', 'Email Atau Password Anda Salah');
     }
 
     public function showRegistrationForm()

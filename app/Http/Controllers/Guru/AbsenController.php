@@ -26,9 +26,10 @@ class AbsenController extends Controller
     public function index()
     {
         $today = Carbon::today();
-        // $absens = AbsenGuru::with('guru')->whereDate('tanggal', $today)->get();
-        $hasAbsensiToday = AbsenMurid::whereDate('tanggal', $today)->exists();
-        $absensMurid = AbsenMurid::with(['murid','mapel'])->get();
+        $data = DataGuru::where('id_user',Auth::user()->id)->first();
+        $mapels = Mapel::where('guru_pengapu',$data->id)->first();
+        $hasAbsensiToday = AbsenMurid::whereDate('tanggal', $today)->where('id_mapel',$mapels->id)->exists();
+        $absensMurid = AbsenMurid::with(['murid','mapel'])->where('id_mapel',$mapels->id)->get();
         // dd($absensMurid);
         return view('guru.absensi.absensi', compact('absensMurid', 'hasAbsensiToday'));
     }
@@ -39,7 +40,7 @@ class AbsenController extends Controller
         $mapels = Mapel::where('guru_pengapu',$data->id)->first();
 
         $today = Carbon::today();
-        if (AbsenMurid::whereDate('tanggal', $today)->exists()) {
+        if (AbsenMurid::whereDate('tanggal', $today)->where('id_mapel',$mapels->id)->exists()) {
             return redirect()->back()->with('alert', 'error')->with('message', 'Absensi hari ini sudah dibuat.');
         }
 
@@ -49,7 +50,7 @@ class AbsenController extends Controller
                 'kode_absen' => "ID-S".mt_rand(0000000,9999999),
                 'id_mapel' => $mapels->id,
                 'id_murid' => $murid->id,
-                'is_absen' => false,
+                'is_absen' => "Belum Absen",
                 'tanggal' => $today->toDateString(),
             ]);
         }
@@ -64,10 +65,9 @@ class AbsenController extends Controller
             'id_guru' => 'required|exists:users,id',
         ]);
         $today = Carbon::today();
-        $result = AbsenGuru::where('id_guru',$data->id)->where('is_absen',0)->where('tanggal',$today->format('Y-m-d'))->update([
-            'is_absen' => true,
+        $result = AbsenGuru::where('id_guru',$data->id)->where('is_absen','Belum Absen')->where('tanggal',$today->format('Y-m-d'))->update([
+            'is_absen' => $request->status,
         ]);
-
         if($result){
             session(['needs_absen' => false]);
             $stats = 'success';

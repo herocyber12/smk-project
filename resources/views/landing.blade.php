@@ -122,7 +122,7 @@
                         @endphp
                     @else
                         @php
-                            $src = "asset($item->path_foto)";
+                            $src = asset($item->path_foto);
                         @endphp
                     @endif
                 <div class="col-lg-4 col-md-6 mt-3">

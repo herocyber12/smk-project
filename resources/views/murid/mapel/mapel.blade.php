@@ -26,6 +26,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mata Pelajaran</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hari</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jam</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -37,6 +38,7 @@
 						<td>{{$item->mapel->nama_mapel}}</td>
 						<td>{{$item->kelas->nama_kelas}}</td>
 						<td>{{$item->hari->days}}</td>
+						<td>{{$item->jadwal_jam->jam_mulai}} - {{$item->jadwal_jam->jam_selesai}}/td>
 					</tr>
 					@php($no++)
 					@endforeach

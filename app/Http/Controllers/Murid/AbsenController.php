@@ -33,33 +33,8 @@ class AbsenController extends Controller
         return view('murid.absensi.absensi', compact('absensMurid', 'hasAbsensiToday'));
     }
 
-    public function buatabsen(Request $request)
-    {
-        $data = DataGuru::where('id_user',Auth::user()->id)->first();
-        $mapels = Mapel::where('guru_pengapu',$data->id)->first();
-
-        $today = Carbon::today();
-        if (AbsenMurid::whereDate('tanggal', $today)->exists()) {
-            return redirect()->back()->with('alert', 'error')->with('message', 'Absensi hari ini sudah dibuat.');
-        }
-
-        $murid = DataMurid::all();
-        foreach ($murid as $murid) {
-            AbsenMurid::create([
-                'kode_absen' => "ID-S".mt_rand(0000000,9999999),
-                'id_mapel' => $mapels->id,
-                'id_murid' => $murid->id,
-                'is_absen' => false,
-                'tanggal' => $today->toDateString(),
-            ]);
-        }
-
-        return redirect()->back()->with('alert', 'success')->with('message', 'Absensi berhasil dibuat.');
-    }
-
     public function updateabsen(Request $request)
     {
-
         $request->validate([
             'id_murid' => 'required|exists:users,id',
         ]);
@@ -67,15 +42,17 @@ class AbsenController extends Controller
         $data = DataMurid::where('id_user',$request->id_murid)->first();
         $today = Carbon::today();
         $update = AbsenMurid::where('id_murid', $data->id)
-        ->where('is_absen', 0)
-        ->whereDate('tanggal', $today)->first();
+        ->where('is_absen', "Belum Absen")
+        ->whereDate('tanggal', $today)->latest()->first();
         if ($update) {
-            $update->is_absen = true;
+            $update->is_absen = $request->status;
             $update->save();
+        } else {
+            return redirect()->back()->with('alert', 'error')->with('message', 'Gagal Absensi.');
         }
         
         session()->forget('needs_absen');
 
-        return redirect()->back();
+        return redirect()->back()->with('alert', 'success')->with('message', 'Berhasil Absensi.');
     }
 }

@@ -30,7 +30,8 @@ class CheckRole
             }
 
             $today = Carbon::today()->format('Y-m-d');
-            $absen = $query->whereDate('tanggal', $today)->where('is_absen',0)->first();
+            $absen = $query->whereDate('tanggal', $today)->where('is_absen','Belum Absen')->latest()->first();
+            // dd($absen);
             if ($absen) {
                 session(['needs_absen' => true]);
             } else {

@@ -15,7 +15,7 @@ class JadwalController extends Controller
     {
         $data = DataMurid::where('id_user',Auth::user()->id)->first();
         
-        $jadwals = Jadwal::with(['mapel', 'hari','kelas'])->whereHas('kelas',function ($query) use ($data){
+        $jadwals = Jadwal::with(['mapel', 'hari','kelas','jadwal_jam'])->whereHas('kelas',function ($query) use ($data){
             $query->where('nama_kelas',$data->id_kelas);
         })->get();
         return view('murid.mapel.mapel', compact('jadwals'));

@@ -9,10 +9,19 @@
         <div class="row gx-4">
             <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
-                    <img src="{{ asset($murid->path_foto) }}" alt="profile_image" class="w-100 h-100 border-radius-lg shadow-sm" style="object-fit: cover;object-position: center;">
-                    <div class="overlay" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); color: white; text-align: center; line-height: 150px; border-radius: inherit;">
-                        Ganti Profil
-                    </div>
+                @if (!isset($murid->path_foto))
+                  @php
+                  $source = "https://www.its.ac.id/international/wp-content/uploads/sites/66/2020/02/blank-profile-picture-973460_1280.jpg";
+
+                  @endphp
+                @else
+                @php
+
+                $source= asset($murid->path_foto);
+                @endphp
+                @endif
+                <img src="{{ $source}}" alt="profile_image" class="w-100 h-100 border-radius-lg shadow-sm" style="object-fit: cover;object-position: center;">
+                    <button class="change-photo-btn btn-sm"> <span style="font-size:12px;"> Ganti Profil</span></button>
                 </div>
             </div>
             <div class="col-auto my-auto">

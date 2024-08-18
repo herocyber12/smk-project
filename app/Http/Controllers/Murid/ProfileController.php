@@ -8,6 +8,8 @@ use App\Models\DataMurid;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
@@ -57,5 +59,28 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('success', 'Password berhasil diperbarui.');
     }
-
+    public function updateProfilePic(Request $request)
+    {
+        $request->validate([
+            'profile_pic' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+    
+        $murid = DataMurid::where('id_user', Auth::id())->first();
+        if ($request->hasFile('profile_pic')) {
+            // Delete old profile picture if exists
+            if ($murid->path_foto) {
+                Storage::delete($murid->path_foto);
+            }
+            $file = $request->file('profile_pic');
+            $filename = Str::random(10) . '.' . $file->extension();
+            $file->storeAs('public/profiles', $filename);
+            $pathFoto = '/storage/profiles/' . $filename;
+            // Store new profile picture
+    
+            // Update path_foto in database
+            $murid->update(['path_foto' => $pathFoto]);
+        }
+    
+        return redirect()->back()->with('success', 'Profile picture updated successfully.');
+    }
 }

@@ -37,7 +37,7 @@ class AbsenController extends Controller
             AbsenGuru::create([
                 'id_absen' => 'ID-S' . mt_rand(0000000, 9999999),
                 'id_guru' => $guru->id,
-                'is_absen' => false,
+                'is_absen' => 'Belum Absen',
                 'tanggal' => $today->toDateString(),
             ]);
         }

@@ -65,6 +65,7 @@ use App\Http\Controllers\LandingController;
                 Route::get('/profiles', 'index')->name('murid.profile');
                 Route::post('/profiles','update')->name('murid.updateprofiles');
                 Route::post('/ganti-password','changePassword')->name('murid.changePassword');
+                Route::post('/ganti-profil','updateProfilePic')->name('murid.updateProfilePic');
             });
         });
     });

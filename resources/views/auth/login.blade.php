@@ -49,6 +49,9 @@
                   <p class="mb-0">Masukkan Email dan Password anda untuk login</p>
                 </div>
                 <div class="card-body">
+                  @if (session('error'))
+                    <div class="alert alert-danger text-white">{{session('error')}}</div>
+                  @endif
                   <form action="{{ url('/login') }}" method="POST" role="form">
                     @csrf
                     <label>Email</label>

@@ -240,22 +240,35 @@
   @if(session('needs_absen'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    title: 'Anda Belum Absen Hari Ini',
-                    text: "Silakan lakukan absensi",
-                    icon: 'warning',
-                    showCancelButton: false,
-                    confirmButtonText: 'Absen'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        var form = document.createElement('form');
-                        form.method = 'POST';
-                        form.action = '{{ route('guru.updateabsen') }}';
-                        form.innerHTML = '@csrf<input type="hidden" name="id_guru" value="{{ Auth::id() }}">';
-                        document.body.appendChild(form);
-                        form.submit();
-                    }
-                });
+              Swal.fire({
+                  title: 'Anda Belum Absen Hari Ini',
+                  text: "Silakan lakukan absensi",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Absen',
+                  cancelButtonText: 'Ijin',
+                  showDenyButton: true,
+                  denyButtonText: 'Sakit'
+              }).then((result) => {
+                  var form = document.createElement('form');
+                  form.method = 'POST';
+                  form.action = '{{ route('guru.updateabsen') }}';
+                  form.innerHTML = '@csrf<input type="hidden" name="id_guru" value="{{ Auth::id() }}">';
+              
+                  if (result.isConfirmed) {
+                      // Jika tombol "Absen" ditekan
+                      form.innerHTML += '<input type="hidden" name="status" value="Hadir">';
+                  } else if (result.isDenied) {
+                      // Jika tombol "Sakit" ditekan
+                      form.innerHTML += '<input type="hidden" name="status" value="Sakit">';
+                  } else if (result.isDismissed && result.dismiss === Swal.DismissReason.cancel) {
+                      // Jika tombol "Ijin" ditekan
+                      form.innerHTML += '<input type="hidden" name="status" value="Ijin">';
+                  }
+                
+                  document.body.appendChild(form);
+                  form.submit();
+              });
             });
         </script>
     @endif

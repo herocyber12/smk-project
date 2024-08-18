@@ -25,6 +25,7 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prodi</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Jalur Pendaftaran</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status Calon</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bukti Tf</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                 </tr>
               </thead>
@@ -55,6 +56,12 @@
                                 </form>
                               </div>
                               @endif
+                            </td>
+                            <td>
+                              <a href="{{asset('storage/'.$data->bukti_tf)}}">
+                                
+                                <img src="{{asset('storage/'.$data->bukti_tf)}}" class="img-fluid" alt="">
+                              </a>
                             </td>
                             <td>
                                 <a href="{{ route('admin.show', $data->id) }}" class="btn btn-info btn-sm">Detail</a>

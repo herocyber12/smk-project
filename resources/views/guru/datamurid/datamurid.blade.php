@@ -38,7 +38,7 @@
 						<td>{{ $item->nama}}</td>
 						<td>{{ $item->alamat}}</td>
 						<td>{{$item->no_hp}}</td>
-						<td>{{$item->email}}</td>
+						<td>{{$item->user->email ?? 'N/A'}}</td>
 						<td>{{$item->id_kelas}}</td>
 						<td>
 							@if ($item->is_lulus === 1)

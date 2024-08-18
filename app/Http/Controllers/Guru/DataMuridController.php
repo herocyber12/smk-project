@@ -21,7 +21,7 @@ class DataMuridController extends Controller
     public function index()
     {
         $data = [
-            'murid' => DataMurid::all(),
+            'murid' => DataMurid::with('user')->get(),
             'kelas' => Kelas::all(),
         ];
 

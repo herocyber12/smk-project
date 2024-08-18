@@ -38,6 +38,35 @@
   <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('css/soft-ui-dashboard.css') }}?v=1.0.3" rel="stylesheet" />
+  <style>
+    .avatar {
+        position: relative;
+        width: 150px;
+        height: 150px;
+    }
+    .avatar img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+    }
+    .avatar .change-photo-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .avatar:hover .change-photo-btn {
+        display: block;
+    }
+  </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -156,12 +185,8 @@
         $('input[name="new_password"], input[name="new_password_confirmation"]').on('keyup', function() {
             checkPasswordMatch();
         });
-        
-        $('.avatar').hover(function() {
-            $(this).find('.overlay').toggle();
-        });
 
-        $('.overlay').click(function() {
+        $('.change-photo-btn').click(function() {
             $('#profile-pic-input').click();
         });
 
@@ -186,22 +211,36 @@
   @if(session('needs_absen'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    title: 'Anda Belum Absen Hari Ini',
-                    text: "Silakan lakukan absensi",
-                    icon: 'warning',
-                    showCancelButton: false,
-                    confirmButtonText: 'Absen'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        var form = document.createElement('form');
-                        form.method = 'POST';
-                        form.action = '{{ route('murid.updateabsen') }}';
-                        form.innerHTML = '@csrf<input type="hidden" name="id_murid" value="{{ Auth::id() }}">';
-                        document.body.appendChild(form);
-                        form.submit();
-                    }
-                });
+              Swal.fire({
+                  title: 'Anda Belum Absen Hari Ini',
+                  text: "Silakan lakukan absensi",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Absen',
+                  cancelButtonText: 'Ijin',
+                  showDenyButton: true,
+                  denyButtonText: 'Sakit'
+              }).then((result) => {
+                  var form = document.createElement('form');
+                  form.method = 'POST';
+                  form.action = '{{ route('murid.updateabsen') }}';
+                  form.innerHTML = '@csrf<input type="hidden" name="id_murid" value="{{ Auth::id() }}">';
+
+                  if (result.isConfirmed) {
+                      // Jika tombol "Absen" ditekan
+                      form.innerHTML += '<input type="hidden" name="status" value="Hadir">';
+                  } else if (result.isDenied) {
+                      // Jika tombol "Sakit" ditekan
+                      form.innerHTML += '<input type="hidden" name="status" value="Sakit">';
+                  } else if (result.isDismissed && result.dismiss === Swal.DismissReason.cancel) {
+                      // Jika tombol "Ijin" ditekan
+                      form.innerHTML += '<input type="hidden" name="status" value="Ijin">';
+                  }
+
+                  document.body.appendChild(form);
+                  form.submit();
+              });
+
             });
         </script>
     @endif
