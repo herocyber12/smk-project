@@ -50,6 +50,7 @@ class PpdbController extends Controller
                     'path_foto' => null, 
                     'is_lulus' => false,
                     'id_user' => $user->id, 
+                    
                 ]);
 
             // });

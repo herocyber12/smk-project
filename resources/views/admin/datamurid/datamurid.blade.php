@@ -36,12 +36,16 @@
 			  <div class="mb-3 col-xl-6">
 				  <label for="lulus" class="form-lulus">Kelas</label>
 				  <select class="form-control" name="kelas">
-					@foreach ($kelas as $item )
-						
-					<option value="{{ $item->nama_kelas }}">{{$item->nama_kelas}}</option>
-					@endforeach
-				  </select>
-			  </div>
+					  @foreach ($kelas as $item )
+					  
+					  <option value="{{ $item->nama_kelas }}">{{$item->nama_kelas}}</option>
+					  @endforeach
+					</select>
+				</div>
+				<div class="mb-3 col-xl-6">
+					<label for="tahun_angkatan" class="form-label">Tahun Angkatan</label>
+					<input type="text" name="tahun_angkatan" minlength="2" maxlength="4" class="form-control" id="tahun_angkatan" placeholder="Contoh : 2020">
+				</div>
 			  <div class="mb-3 col-xl-6">
 				  <label for="lulus" class="form-lulus">Sudah Lulus ?</label>
 				  <select class="form-control" name="lulus">
@@ -90,7 +94,8 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status Kelulusan</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Akssi</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Angkatan</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -111,6 +116,7 @@
 								Belum Lulus
 							@endif
 						</td>
+						<td> {{$item->tahun_angkatan ?? 'N/A'}} </td>
 						<td>
 						  <div class="d-flex d-inline-block">
 							  <button type="button" class="btn btn-warning m-1" data-bs-toggle="modal" data-bs-target="#edit{{$item->id}}">Edit</button>
@@ -155,6 +161,10 @@
 													<option value="{{ $k->nama_kelas }}">{{$k->nama_kelas}}</option>
 													@endforeach
 				  								</select>
+												</div>
+												<div class="mb-3 col-xl-6">
+													<label for="tahun_angkatan_edit" class="form-label">Tahun Angkatan</label>
+													<input type="text" name="tahun_angkatan_edit" minlength="2" maxlength="4" class="form-control" id="tahun_angkatan_edit" placeholder="Contoh : 2020">
 												</div>
 												<div class="mb-3 col-xl-6">
 													

@@ -27,6 +27,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status Kelulusan</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Angkatan</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -41,12 +42,13 @@
 						<td>{{$item->user->email ?? 'N/A'}}</td>
 						<td>{{$item->id_kelas}}</td>
 						<td>
-							@if ($item->is_lulus === 1)
-								Sudah Lulus
+              @if ($item->is_lulus === 1)
+              Sudah Lulus
 							@else
-								Belum Lulus
+              Belum Lulus
 							@endif
 						</td>
+            <td>{{$item->tahun_angkatan}}</td>
 					  </tr>
 					  @endforeach
 					</tbody>

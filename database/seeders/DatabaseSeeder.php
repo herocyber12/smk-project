@@ -22,9 +22,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             DataGuruTableSeeder::class,
+            KelasSeed::class,
             DataMuridTableSeeder::class,
             MapelSeeder::class,
-            HariTableSeeder::class
+            HariTableSeeder::class,
         ]);
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kelas', function(Blueprint $table){
             $table->id();
             $table->string('id_kelas')->unique()->nullable();
-            $table->string('nama_kelas',25)->nullable();
+            $table->string('nama_kelas',25)->unique()->nullable();
             $table->unsignedBigInteger('id_wali');
 
             $table->foreign('id_wali')->references('id')->on('data_guru');

@@ -5,8 +5,47 @@
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0">
           <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">+ Tambah Data</button>
+		  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exportData"> Export Data</button>
         </div>
-		  
+		
+		<!-- Modal -->
+		<div class="modal fade" id="exportData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Export Data</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <form action="{{url('/cetak-pdf')}}" method="get">
+					@csrf
+					<div class="mb-3">
+
+						<label for="">Pilih Kelas</label>
+						<span style="font-size:12px;" >*Silahkan Pilih Kelas Yang Ingin Di Export</span>
+						<select name="queryKelas" class="form-control">
+							@foreach ($kelas as $k)
+							<option value="{{$k->nama_kelas}}">{{$k->nama_kelas}}</option>
+							@endforeach
+						</select>
+					</div>
+					<div class="mb-3 col-xl-12">
+        				  <label for="nilai" class="form-label">Nilai Untuk</label>
+						  <select name="jenis_nilai" class="form-control" id="">
+							  <option value="Tugas">Tugas</option>
+							<option value="UAS">UAS</option>
+							<option value="UTS">UTS</option>
+						  </select>
+        			  </div>
+					<div class="mb-3">
+						<button type="submit" class="btn btn-success">Export Data Sekarang!</button>
+					</div>
+				</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 		    <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -26,14 +65,14 @@
 								@endforeach
         				  </select>
         			  </div>
-        			  <div class="mb-3 col-xl-6">
+        			  {{--<div class="mb-3 col-xl-6">
         				 <label for="nama" class="form-label">Kelas</label>
         				  <select name="id_kelas" class="form-control">
 							@foreach ($kelas as $k)
 							<option value="{{$k->id}}">{{$k->nama_kelas}}</option>
 							@endforeach
         				  </select>
-        			  </div>
+        			  </div>--}}
         			  <div class="mb-3 col-xl-6">
         				 <label for="nama" class="form-label">Mata Pelajaran</label>
         				  <select name="id_mapel" class="form-control" disabled>
@@ -46,7 +85,7 @@
 						  <select name="jenis_nilai" class="form-control" id="">
 							  <option value="Tugas">Tugas</option>
 							<option value="UAS">UAS</option>
-							<option value="UTS">UAS</option>
+							<option value="UTS">UTS</option>
 						  </select>
         			  </div>
         			  <div class="mb-3 col-xl-6">
@@ -128,14 +167,14 @@
 													<option value="{{$item->murid->id}}">{{$item->murid->nama}}</option>
 												</select>
 											</div>
-											<div class="mb-3 col-xl-6">
+											{{--<div class="mb-3 col-xl-6">
         										 <label for="nama" class="form-label">Kelas</label>
         										  <select name="id_kelas_edit" class="form-control">
 													@foreach ($kelas as $k)
 													<option value="{{$k->id}}">{{$k->nama_kelas}}</option>
 													@endforeach
         										  </select>
-        			  						</div>
+        			  						</div>--}}
         			  						<div class="mb-3 col-xl-6">
         										 <label for="nama" class="form-label">Mata Pelajaran</label>
         										  <select name="id_mapel_edit" class="form-control" disabled>
@@ -151,7 +190,7 @@
 											  		<select name="jenis_nilai_edit" class="form-control" id="">
 														<option value="Tugas" {{$item->jenis_nilai === "Tugas" ? 'selected' : ''}}>Tugas</option>
 														<option value="UAS" {{$item->jenis_nilai === "UAS" ? 'selected' : ''}}>UAS</option>
-														<option value="UTS" {{$item->jenis_nilai === "UTS" ? 'selected' : ''}}>UAS</option>
+														<option value="UTS" {{$item->jenis_nilai === "UTS" ? 'selected' : ''}}>UTS</option>
 						  							</select>
 											</div>
 											<div class="mb-3 col-xl-6">

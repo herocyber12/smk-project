@@ -39,9 +39,9 @@ class DataNilaiController extends Controller
     {   
         $data = DataGuru::where('id_user',Auth::user()->id)->first();
         $mapels = Mapel::where('guru_pengapu',$data->id)->first();
-
+        $datakelas = DataMurid::where('id',$request->id_murid)->first();
+        $kelas = Kelas::where('nama_kelas',$datakelas->id_kelas)->first();
         $request->validate([
-            'id_kelas' => 'required|exists:kelas,id',
             'id_murid' => 'required|exists:data_murid,id',
             'nilai' => 'required|integer|min:0|max:100',
             'jenis_nilai' => 'required',
@@ -51,7 +51,7 @@ class DataNilaiController extends Controller
         $kode_nilai = 'ID-N'.$rand;
         Nilai::create([
             'kode_nilai' => $kode_nilai,
-            'id_kelas' => $request->id_kelas,
+            'id_kelas' => $kelas->id,
             'id_murid' => $request->id_murid,
             'id_mapel' => $mapels->id,
             'nilai' => $request->nilai,
@@ -67,12 +67,16 @@ class DataNilaiController extends Controller
         $mapels = Mapel::where('guru_pengapu',$data->id)->first();
         // dd($request)
         $request->validate([
-            'id_kelas_edit' => 'required|exists:kelas,id',
             'nilai_edit' => 'required|integer|min:0|max:100',
+            'jenis_nilai_edit' => 'required'
         ]);
 
-        $nilai = Nilai::where('id',$id)->update([
-                                            'id_kelas' => $request->id_kelas_edit,
+        $nilai = Nilai::findOrFail($id);
+        $datamurid = DataMurid::where('id',$nilai->id_murid);
+        $kelas = Kelas::where('nama_kelas',$datamurid->first()->id_kelas)->first();
+
+        $nilai->update([
+                                            'id_kelas' => $kelas->id,
                                             'id_mapel' => $mapels->id,
                                             'nilai' => $request->nilai_edit,
                                             'jenis_nilai' => $request->jenis_nilai_edit

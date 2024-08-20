@@ -22,10 +22,10 @@ use App\Http\Controllers\Guru\ProfileController as Profile;
 use App\Http\Controllers\Murid\AbsenController as AbsenMurid;
 use App\Http\Controllers\Murid\JadwalController as JadwalMurid;
 use App\Http\Controllers\Murid\ProfileController as ProfilelMurid;
+use App\Http\Controllers\Murid\NilaiController as NilaiMurid;
 use App\Http\Controllers\PpdbController as Ppdb;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\LandingController;
-    
 
     Route::controller(Ppdb::class)->group(function(){
         Route::get('/pendaftaran-siswa', 'index')->name('siswa');
@@ -66,6 +66,9 @@ use App\Http\Controllers\LandingController;
                 Route::post('/profiles','update')->name('murid.updateprofiles');
                 Route::post('/ganti-password','changePassword')->name('murid.changePassword');
                 Route::post('/ganti-profil','updateProfilePic')->name('murid.updateProfilePic');
+            });
+            Route::controller(NilaiMurid::class)->group(function(){
+                Route::get('/nilai-anda','index')->name('murid.nilai');
             });
         });
     });
@@ -155,5 +158,6 @@ use App\Http\Controllers\LandingController;
         });
 });
 
-Route::get('/',[LandingController::class,'index']);
+Route::get('/cetak-pdf',[DataNilaiController::class,'exportNilai']);
 
+Route::get('/',[LandingController::class,'index']);

@@ -39,6 +39,7 @@ class DataMuridController extends Controller
             'kelas' => 'required|string',
             'foto_murid' => 'required|image',
             'lulus' => 'required|boolean',
+            'tahun_angkatan' => 'required|numeric'
         ]);
 
         if ($validator->fails()) {
@@ -67,7 +68,8 @@ class DataMuridController extends Controller
                 'id_kelas' => $request->kelas,
                 'path_foto' => $pathFoto,
                 'is_lulus' => $request->lulus,
-                'id_user' => $user->id
+                'tahun_angkatan' => $request->tahun_angkatan,
+                'id_user' => $user->id,
             ]);
 
             if ($result) {
@@ -90,6 +92,7 @@ class DataMuridController extends Controller
             'kelas_edit' => 'required|string',
             'foto_murid' => 'nullable|image',
             'lulus_edit' => 'required|boolean',
+            'tahun_angkatan_edit'=> 'required|numeric'
         ]);
 
         if ($validator->fails()) {
@@ -116,7 +119,8 @@ class DataMuridController extends Controller
             'no_hp' => $request->no_hp_edit,
             'id_kelas' => $request->kelas_edit,
             'path_foto' => $pathFoto,
-            'is_lulus' => $request->lulus_edit
+            'is_lulus' => $request->lulus_edit,
+            'tahun_angkatan' => $request->tahun_angkatan_edit,
         ]);
 
         $result = User::where('id', $data->id_user)->update([

@@ -18,6 +18,7 @@ class DataMurid extends Model
         'id_kelas',
         'path_foto',
         'is_lulus',
+        'tahun_angkatan',
         'id_user',
     ];
     protected $guarded = [];
@@ -32,6 +33,6 @@ class DataMurid extends Model
 
     public function kelas()
     {
-        return $this->hasMany(Kelas::class);
+        return $this->belongsTo(Kelas::class,'id_kelas');
     }
 }

@@ -21,4 +21,8 @@ class Kelas extends Model
         return $this->hasMany(Jadwal::class, 'id_kelas');
     }
     
+    public function murid()
+    {
+        return $this->hasMany(DataMurid::class,'id_kelas');
+    }
 }

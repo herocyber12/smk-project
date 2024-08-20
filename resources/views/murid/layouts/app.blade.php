@@ -97,6 +97,14 @@
             <span class="nav-link-text ms-1">Absensi</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('murid.nilai') ? 'active' : '' }} " href="{{ route('murid.nilai')}}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa text-black-50 fa-check-to-slot"></i>
+            </div>
+            <span class="nav-link-text ms-1">Nilai Anda</span>
+          </a>
+        </li>
         
       </ul>
     </div>
